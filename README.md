@@ -4,27 +4,33 @@ This is a daemon that does _buddy builds_ of your software for you.  It's contro
 
 ## Setup
 
-### Ruby
+### NodeJS
 
-I recommend installing [Homebrew](http://brew.sh) to install either `rbenv` or `rvm` as is your preference.  NOTE: I only use `rbenv` so you may encounter issues with `rvm`.  The project requires ruby 2.2.2.
+On macOS install `NodeJS` I recommend you install with with `brew install node`.  On Ubuntu follow the instructions on [nodejs.org](https://nodejs.org/en/download/package-manager/)
 
-If you are using `rbenv` I recommend installing `rbenv-bundler` with `brew` to avoid the need to remember to type `bundle exec` to use local configured Gems.
+_This project has not yet been ported to Windows.  If you would like to run it on a Windows system, please make the necessary changes and submit a pull request to this repo and I will gladly review and help to integrate the necessary changes._
 
-### Installation
+### Installation 
 
-Install the Build Buddy Gem using:
+Install the Build Buddy package using:
 
 ```bash
-gem install build-buddy
+npm install slack-build-bot
 ```
 
-Before you do anything create a `.bbconfig` file with the following format:
+or, with more recent versions of node you can ensure that you are always running the newest version of the tool with:
 
-```ruby
-BuildBuddy.configure do |config|
-  config.github_webhook_port = 4567
-  config.github_webhook_secret_token = '...'
-  config.github_webhook_repo_full_name = '.../...'
+```bash
+npx slack-build-bot
+```
+
+Now, before you do anything else create a `slack-build-bot.json5` file with the following information:
+
+```json5
+{
+  githubWebhookPort: 4567,
+  github_webhook_secret_token = '...'
+  github_webhook_repo_full_name = '.../...'
   config.github_api_token = '...'
   config.slack_api_token = '...'
   config.slack_build_channel = "#..."
@@ -101,12 +107,12 @@ config.mongo_uri = "mongodb://localhost:27017/build-buddy"
 
 ### Environment Variables
 
-The following variables are passed into the `config.branch_build_script` and `config.pull_request_build_script`:
+The following variables are passed into the `branch_build_script` and `config.pull_request_build_script`:
 
-- `BB_BUILD_OUTPUT_DIR` is the directory where the build log is placed and where report files should be placed.
-- `BB_BUILD_SCRIPT` the name of the build script being run.
-- `BB_GIT_BRANCH` the branch being built.
-- `BB_GIT_REPO_NAME` the repo name.
-- `BB_GIT_REPO_OWNER` the repo owner.
-- `BB_METRICS_DATA_FILE` the name of the build metrics file.
-- `BB_MONGO_URI` the full URI for connecting to the MongoDB for report generation.
+- `SBB_BUILD_OUTPUT_DIR` is the directory where the build log is placed and where report files should be placed.
+- `SBB_BUILD_SCRIPT` the name of the build script being run.
+- `SBB_GIT_BRANCH` the branch being built.
+- `SBB_GIT_REPO_NAME` the repo name.
+- `SBB_GIT_REPO_OWNER` the repo owner.
+- `SBB_METRICS_DATA_FILE` the name of the build metrics file.
+- `SBB_MONGO_URI` the full URI for connecting to the MongoDB for report generation.
