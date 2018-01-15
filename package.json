@@ -1,0 +1,54 @@
+{
+  "name": "slack-build-bot",
+  "version": "1.0.0",
+  "description": "A continuous integration build bot for Slack with MongoDB and GitHub integration",
+  "bin": {
+    "<tool>": "dist/slack-build-bot.js"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "babel src -d dist -s --ignore *.test.js",
+    "debug:snap": "babel-node --inspect-brk src/slack-build-bot.js",
+    "test": "jest",
+    "test:debug": "babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "node_modules/",
+      "scratch/"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlyonsmith/slack-build-bot.git"
+  },
+  "keywords": [
+    "slack",
+    "build",
+    "bot",
+    "github",
+    "mongodb"
+  ],
+  "author": "John Lyon-Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlyonsmith/slack-build-bot/issues"
+  },
+  "homepage": "https://github.com/jlyonsmith/slack-build-bot#readme",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "minimist": "^1.2.0",
+    "temp": "^0.8.3"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.0.6"
+  }
+}
