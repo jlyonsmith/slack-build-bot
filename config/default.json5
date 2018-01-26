@@ -1,0 +1,6 @@
+{
+  githubWebhookPort: 4567,
+  numSavedBildOutputs: 3,
+  pullRequestBuildScript: 'bin/pull-request-build',
+  branchBuildScript: 'bin/branch-build',
+}

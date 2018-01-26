@@ -10,7 +10,7 @@ On macOS install `NodeJS` I recommend you install with with `brew install node`.
 
 _This project has not yet been ported to Windows.  If you would like to run it on a Windows system, please make the necessary changes and submit a pull request to this repo and I will gladly review and help to integrate the necessary changes._
 
-### Installation 
+### Installation
 
 Install the Build Buddy package using:
 
@@ -24,31 +24,31 @@ or, with more recent versions of node you can ensure that you are always running
 npx slack-build-bot
 ```
 
-Now, before you do anything else create a `slack-build-bot.json5` file with the following information:
+Now, before you do anything else create a `~/.slack-build-bot/local.json5` file with the following information:
 
 ```json5
 {
   githubWebhookPort: 4567,
-  github_webhook_secret_token = '...'
-  github_webhook_repo_full_name = '.../...'
-  config.github_api_token = '...'
-  config.slack_api_token = '...'
-  config.slack_build_channel = "#..."
-  config.slack_pr_channel = "#..."
-  config.slack_builders = ['@...']
-  config.build_output_dir = "$HOME/Projects/..."
-  config.num_saved_build_outputs = 3
-  config.pull_request_build_script = "bin/pull-request-build"
-  config.branch_build_script = "bin/branch-build"
-  config.pull_request_root_dir = "$HOME/Projects/..."
-  config.branch_root_dir = "$HOME/Projects/..."
-  config.allowed_build_branches = ['v1.0']
-  config.server_base_uri = "https://..."
-  config.mongo_uri = "mongodb://localhost:27017/..."
-end
+  githubWebhookSecretToken: '...',
+  githubWebhookRepoFullName: '.../...',
+  githubApiToken: '...',
+  slackApiToken: '...',
+  slackBuildChannel: '#...',
+  slackPrChannel: '#...',
+  slackBuilders: ['@...'],
+  buildOutputDir: '$HOME/Projects/...',
+  numSavedBildOutputs: 3,
+  pullRequestBuildScript: 'bin/pull-request-build',
+  branchBuildScript: 'bin/branch-build',
+  pullRequestRootDir: '$HOME/Projects/...',
+  branchRootDir: '$HOME/Projects/...',
+  allowedBuildBranches: ['v1.0'],
+  serverBaseUri: 'https://...',
+  mongoUri: 'mongodb://localhost:27017/...',
+}
 ```
 
-Customize the build scripts based on your project type.
+Set `NODE_CONFIG_DIR` to point to `~/.slack-build-bot`. Following the instructions below, complete the missing configuration information and create build scripts based on your project type.
 
 ### Slack
 
@@ -63,7 +63,7 @@ Now you have a build bot configured, start the `build-buddy` script. Next start 
 
 ### GitHub
 
-Next it's time to get GitHub integration working.  You'll need to generate a personal access token for the user that will be committing build tags and version updates for the build. 
+Next it's time to get GitHub integration working.  You'll need to generate a personal access token for the user that will be committing build tags and version updates for the build.
 
 1. Log in to GitHub as the user that the build will be acting as. It's wise to create a user specifically for builds to avoid giving access to you personal GitHub account.
 2. Go to the drop down in the top right hand corner (the one with the user icon, next to the arrow) and select **Settings** from the menu.
@@ -88,7 +88,7 @@ Finally, you need to set up a webhook for pull-requests to the repository.  Do t
 
 As soon as you save the webhook it will send a `ping` message to the `build-buddy` service.  You should get a 200 reponse.  If you do then congratulations, GitHub is talking to your `build-buddy` instance.  You will now get a buddy build status check on your pull requests.
 
-After you have done at least one pull request, you can go to "Settings > Branches" and enable branch protection for any branches you desire, thus _requiring_ buddy builds before commits can be made to those branches. 
+After you have done at least one pull request, you can go to "Settings > Branches" and enable branch protection for any branches you desire, thus _requiring_ buddy builds before commits can be made to those branches.
 
 ### MongoDB
 

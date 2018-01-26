@@ -6,7 +6,8 @@ import process from 'process'
 import temp from 'temp'
 
 export class SlackBuildBotTool {
-  constructor(log) {
+  constructor(toolName, log) {
+    this.toolName = toolName
     this.log = log
   }
 
@@ -23,7 +24,7 @@ export class SlackBuildBotTool {
 
     if (this.args.help) {
       this.log.info(`
-usage: tool <cmd> [options]
+usage: ${this.toolName} <cmd> [options]
 
 options:
   --help                        Shows this help.

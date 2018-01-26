@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { SlackBuildBotTool } from './SlackBuildBotTool'
 import chalk from 'chalk'
+import path from 'path'
 
 const log = {
   info: console.error,
@@ -9,7 +10,7 @@ const log = {
   warning: function() { console.error(chalk.yellow('warning:', [...arguments].join(' '))) }
 }
 
-const tool = new SlackBuildBotTool(log)
+const tool = new SlackBuildBotTool(path.basename(process.argv[1], '.js'), log)
 tool.run(process.argv.slice(2)).then((exitCode) => {
   process.exit(exitCode)
 }).catch((err) => {
